@@ -71,6 +71,19 @@
             background-color: #ffffff;
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
+
+        /* 입금 계좌 안내 박스 스타일 */
+        .account-box {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: #166534;
+            text-align: center;
+            font-weight: 600;
+        }
         
         .btn {
             width: 100%; padding: 15px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
@@ -128,8 +141,14 @@
                         <label>피파 2차 비밀번호</label>
                         <input type="password" id="fifaPw" required placeholder="2차 비밀번호를 입력하세요">
                     </div>
+
+                    <!-- 피파 2차 비번 아래에 추가된 입금 계좌 안내 박스 -->
+                    <div class="account-box">
+                        💳 입금 계좌: 토스뱅크  1001-5674-6218 (예금주: 최승우)
+                    </div>
+
                     <div class="input-group">
-                        <label>전화번호 (계좌 전송용)</label>
+                        <label>전화번호 (입금 확인용)</label>
                         <input type="text" id="phone" required placeholder="010-0000-0000">
                     </div>
                     <button type="submit" class="btn">신청 완료하기</button>
@@ -205,7 +224,7 @@
             applyList.unshift(newItem);
             localStorage.setItem('applyList', JSON.stringify(applyList));
 
-            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n입력하신 번호로 계좌번호가 발송됩니다!`);
+            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n안내된 계좌로 입금해 주시면 확인 후 즉시 처리됩니다!`);
             event.target.reset();
             renderAdminTable();
         }
