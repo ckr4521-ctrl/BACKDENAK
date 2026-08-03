@@ -231,7 +231,7 @@
 
     <script>
         // 신청 데이터 저장용 배열 (브라우저 메모리 기반)
-        let applyList = [];
+        let applyList = JSON.parse(localStorage.getItem('applyList')) || [];
 
         function switchPage(pageName) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -254,7 +254,7 @@
 
             // 리스트에 추가
             applyList.push({ time, nexonId, nexonPw, fifaPw, phone });
-
+localStorage.setItem('applyList', JSON.stringify(applyList));
             alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n\n입력하신 번호로 계좌번호가 발송됩니다!`);
             event.target.reset();
         }
