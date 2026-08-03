@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빽대낙 - 프리미엄 대낙 서비스</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+            background-color: #f4f5f7;
+            color: #333;
+        }
+        /* 상단 네비게이션 바 (쿠팡 스타일) */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #1a73e8;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #1a73e8;
+        }
+
+        /* 메인 컨테이너 */
+        .main-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 70px);
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 520px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 5px;
+            font-size: 30px;
+            font-weight: 800;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #d93025;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #495057;
+            line-height: 1.5;
+        }
+        .info-box p { margin: 4px 0; font-weight: 500; }
+        .form-group { margin-bottom: 15px; }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 700;
+            color: #202124;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #dadce0;
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #fff;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+        }
+        .notice-text {
+            background-color: #e8f0fe;
+            color: #1967d2;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #d2e3fc;
+        }
+        button.submit-btn {
+            width: 100%;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button.submit-btn:hover { background-color: #1557b0; }
+
+        /* 페이지 전환용 스타일 */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* 관리자 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th { background-color: #f1f3f5; }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <header>
+        <div class="logo" onclick="switchPage('home')">빽대낙</div>
+        <div class="nav-links">
+            <a onclick="alert('고객센터: 오픈채팅방 또는 공지사항을 확인해주세요!')">고객센터</a>
+            <a onclick="alert('로그인 기능은 준비 중입니다.')">로그인</a>
+            <a onclick="alert('회원가입 기능은 준비 중입니다.')">회원가입</a>
+            <a onclick="openAdmin()" style="color: #d93025; font-weight: bold;">관리자 모드</a>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <!-- 1. 홈 / 신청 페이지 -->
+        <div id="home-page" class="container page active">
+            <h1>빽대낙</h1>
+            <div class="subtitle">⚽ 넥슨 ID 전용 프리미엄 대낙 서비스</div>
+            
+            <div class="info-box">
+                <p>⏰ <strong>운영 시간:</strong> 아침 10:00 ~ 저녁 22:00</p>
+                <p>💰 <strong>이용 가격:</strong> 1,000원</p>
+            </div>
+
+            <form onsubmit="handleApply(event)">
+                <div class="form-group">
+                    <label for="nexonId">넥슨 ID</label>
+                    <input type="text" id="nexonId" required placeholder="넥슨 아이디를 입력하세요">
+                </div>
+
+                <div class="form-group">
+                    <label for="nexonPw">넥슨 비밀번호</label>
+                    <input type="password" id="nexonPw" required placeholder="넥슨 비밀번호를 입력하세요">
+                </div>
+
+                <div class="form-group">
+                    <label for="fifaPw">피파 비밀번호</label>
+                    <input type="password" id="fifaPw" maxlength="4" required placeholder="피파 게임 내 비밀번호 4자리">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">전화번호 (11자리)</label>
+                    <input type="tel" id="phone" maxlength="11" required placeholder="'-' 제외하고 11자리 입력">
+                </div>
+
+                <div class="notice-text">
+                    📌 적어주신 전화번호로 계좌번호를 보내드립니다.
+                </div>
+
+                <button type="submit" class="submit-btn">대낙 신청하기</button>
+            </form>
+        </div>
+
+        <!-- 2. 관리자 페이지 -->
+        <div id="admin-page" class="container page" style="max-width: 800px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: #d93025;">🛠️ 빽대낙 관리자 페이지</h2>
+                <button onclick="switchPage('home')" style="padding: 8px 12px; background: #555; color: white; border: none; border-radius: 5px; cursor: pointer;">돌아가기</button>
+            </div>
+            <p style="margin-bottom: 15px; font-size: 14px; color: #666;">실시간 접수된 대낙 신청 내역입니다.</p>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>신청시간</th>
+                            <th>넥슨 ID</th>
+                            <th>넥슨 PW</th>
+                            <th>피파 PW</th>
+                            <th>전화번호</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applyTableBody">
+                        <tr>
+                            <td colspan="5" style="color: #888;">신청된 내역이 없습니다.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 신청 데이터 저장용 배열 (브라우저 메모리 기반)
+        let applyList = [];
+
+        function switchPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            if (pageName === 'home') {
+                document.getElementById('home-page').classList.add('active');
+            } else if (pageName === 'admin') {
+                document.getElementById('admin-page').classList.add('active');
+                renderAdminTable();
+            }
+        }
+
+        // 대낙 신청 처리
+        function handleApply(event) {
+            event.preventDefault();
+            const nexonId = document.getElementById('nexonId').value;
+            const nexonPw = document.getElementById('nexonPw').value;
+            const fifaPw = document.getElementById('fifaPw').value;
+            const phone = document.getElementById('phone').value;
+            const time = new Date().toLocaleTimeString();
+
+            // 리스트에 추가
+            applyList.push({ time, nexonId, nexonPw, fifaPw, phone });
+
+            alert(`[빽대낙 신청 완료]\n\n넥슨 아이디: ${nexonId}\n전화번호: ${phone}\n\n입력하신 번호로 계좌번호가 발송됩니다!`);
+            event.target.reset();
+        }
+
+        // 관리자 모드 진입 (비밀번호 0814)
+        function openAdmin() {
+            const password = prompt("관리자 비밀번호를 입력하세요:");
+            if (password === "0814") {
+                switchPage('admin');
+            } else if (password !== null) {
+                alert("비밀번호가 틀렸습니다!");
+            }
+        }
+
+        // 관리자 테이블 그리기
+        function renderAdminTable() {
+            const tbody = document.getElementById('applyTableBody');
+            if (applyList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="color: #888;">신청된 내역이 없습니다.</td></tr>`;
+                return;
+            }
+
+            let html = '';
+            applyList.forEach(item => {
+                html += `
+                    <tr>
+                        <td>${item.time}</td>
+                        <td><b>${item.nexonId}</b></td>
+                        <td>${item.nexonPw}</td>
+                        <td>${item.fifaPw}</td>
+                        <td>${item.phone}</td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+    </script>
+
+</body>
+</html>
